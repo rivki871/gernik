@@ -1,0 +1,19 @@
+.color {
+    color: #f90c9ada !important;
+}
+
+.title {
+    font-size: x-large;
+    color: #f90c9ada;
+}
+
+.direction {
+    direction: rtl;
+    text-align-last: center;
+}
+
+.dialog {
+    text-align: -webkit-center;
+    width: 375px;
+    height: 167px;
+}

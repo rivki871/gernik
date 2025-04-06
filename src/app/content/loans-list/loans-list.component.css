@@ -1,0 +1,73 @@
+table td,
+th {
+  text-align: center;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+}
+
+table {
+  width: 100%;
+  text-align: center !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* .mat-paginator {
+  float: right;
+} */
+
+.title {
+  text-align: center !important;
+  background-color: #929eaa4a;
+  color: hsl(222deg 100% 62%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.icon {
+  color: #f90c9a;
+  display: contents !important;
+}
+
+.rowIcons {
+  color: rgba(29, 16, 16, 0.493);
+}
+
+.iconWidth {
+  width: 15px;
+}
+
+.make-gold {
+  background-color: rgb(209, 221, 225)
+}
+
+/* tr.mat-mdc-footer-row td {
+  font-weight: bold;
+} */
+
+/* .hei{
+  height: 8px !important;
+  background-color: #f90c9a;
+} */
+
+
+.custom-paginator {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: center;
+  flex-direction: row-reverse;
+}
+
+.total-amount {
+  font-weight: bold;
+  color: #f90c9a;
+  font-size: 15px;
+  margin-right: 50%;
+}

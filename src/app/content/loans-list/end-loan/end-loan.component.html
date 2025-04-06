@@ -1,0 +1,28 @@
+<form [formGroup]="endLoanForm" class="form">
+    <br>
+    <mat-label class="title2">סיום השאלה</mat-label>
+    <br>
+    <br>
+    <div class="direction">
+
+        <!-- <mat-form-field class="posi">
+            <mat-label>תאריך</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field> -->
+
+        <mat-form-field class="sum">
+            <mat-label>תשלום</mat-label>
+            <input matInput type="number" formControlName="payment"  />
+        </mat-form-field>
+        <br>
+
+        <mat-checkbox formControlName="securityCheck" value="before" [(ngModel)]="checked">הוחזר פיקדון</mat-checkbox>
+
+    </div>
+    <br>
+
+    <button mat-button mat-dialog-close>בטל</button>
+    <button type="submit" mat-button class="color" (click)="save()">שמור</button>
+</form>

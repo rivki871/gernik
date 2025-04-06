@@ -1,0 +1,33 @@
+.form {
+    text-align: -webkit-center;
+    width: 400px;
+    height: 260px;
+}
+
+.title {
+    font-size: x-large;
+    color: #f90c9ada;
+}
+
+.direction {
+    direction: rtl;
+    text-align-last: center;
+}
+
+.color {
+    color: #f90c9ada !important;
+}
+
+.sum {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.posi {
+    width: 160px;
+}
+
+.title2 {
+    font-size: x-large;
+    color: #f90c9ada;
+}

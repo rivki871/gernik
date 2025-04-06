@@ -1,0 +1,56 @@
+ table,
+ td,
+ th {
+   text-align: center !important;
+ }
+
+ .mat-mdc-form-field {
+   font-size: 14px;
+   width: 100%;
+ }
+
+ ::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+}
+
+ table {
+   width: 80%;
+   text-align: center;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+ .title {
+   text-align: center;
+   background-color: #929eaa4a;
+   color: hsl(222deg 100% 62%);
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+ .bigFont:hover {
+   font-size: 60px;
+   color: #f90c9a;
+ }
+
+ .icon {
+   color: #f90c9a;
+   display: contents !important;
+ }
+
+ .rowIcons {
+   color: rgba(29, 16, 16, 0.493);
+ }
+
+ .iconWidth {
+   width: 15px;
+ }
+
+ .mat-cell {
+   font-size: 15px;
+ }
+
+ mat-sort-header-container {
+   display: flex;
+   align-items: center;
+   flex-direction: column-reverse;
+ }

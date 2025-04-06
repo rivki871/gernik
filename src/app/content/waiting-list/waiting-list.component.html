@@ -1,0 +1,98 @@
+<div dir="rtl">
+  <div class="filter">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="הקלד לחיפוש  " #input class="input"
+        [(ngModel)]="value">
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header sortActionDescription="Sort by no">No.</th>
+        <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header sortActionDescription="Sort by name">שם</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header sortActionDescription="Sort by phone">טלפון
+        </th>
+        <td mat-cell *matCellDef="let element" class="bigFont"> {{element.phone}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header sortActionDescription="Sort by address">
+          כתובת</th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="securityCheck">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header
+          sortActionDescription="Sort by securityCheck">צ'ק פקדון</th>
+        <td mat-cell *matCellDef="let element"> {{element.securityCheck}} </td>
+      </ng-container>
+      <ng-container matColumnDef="payment">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header sortActionDescription="Sort by payment">
+          תשלום</th>
+        <td mat-cell *matCellDef="let element"> {{element.payment}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="insertDate">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header sortActionDescription="Sort by insertDate">
+          תאריך הוספה
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.insertDate | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remarks">
+        <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header sortActionDescription="Sort by remarks">
+          הערות</th>
+        <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="loan">
+        <th mat-header-cell *matHeaderCellDef class="title"> השאלה</th>
+        <td mat-cell *matCellDef="let element" class="iconWidth">
+          <button mat-icon-button class="rowIcons" (click)="openDialog(1,element)">
+            <mat-icon>volunteer_activism</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef class="title"> עריכה</th>
+        <td mat-cell *matCellDef="let element" class="iconWidth">
+          <button mat-icon-button class="rowIcons" (click)="openDialog(2,element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef class="title"> מחיקה</th>
+        <td mat-cell *matCellDef="let element" class="iconWidth">
+          <button mat-icon-button class="rowIcons" (click)="openDialog(3,element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="8">אין נתונים התואמים לחיפוש "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>
+
+<!-- <app-delete-loan *ngIf="deleteDialog" [clientDetails]="dataWaiting"></app-delete-loan> -->

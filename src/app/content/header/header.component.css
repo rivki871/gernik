@@ -1,0 +1,52 @@
+.header {
+  text-align: -webkit-center;
+  margin-top: 25px;
+}
+
+.title {
+  font-size: xx-large;
+  color: hsl(222deg 100% 62%);
+  font-weight: bolder;
+  animation: blinker 1.7s linear infinite;
+  animation-iteration-count: 3;
+  margin-left: 10px;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.title2 {
+  font-size: small;
+  color: hsl(222deg 100% 62%);
+}
+
+.title3 {
+  color: #f90c9a;
+  font-size: large;
+}
+
+.btn {
+  background-color: #f90c9ada;
+  z-index: 1000;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+.chartBtn{
+  background-color: #f90c9ada;
+  position: fixed; /* מצב קבוע, הכפתור תמיד מוצמד */
+  left: 0;  /* המרחק מהחלק הימני של הדף */
+  padding: 15px 20px; /* מרווחים פנימיים */
+  color: white; /* צבע הטקסט */
+  border: none; /* ביטול גבולות */
+  border-radius: 20px 0 0 20px; /* קצוות מעוגלים */
+  font-size: 16px; /* גודל גופן */
+  cursor: pointer; /* שינוי הסמן בעת ריחוף */
+  transform: translateY(-50%);
+}

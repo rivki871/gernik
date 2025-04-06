@@ -1,0 +1,15 @@
+<div class="dialog">
+    <br>
+    <mat-label class="title">מחיקת רשומה</mat-label>
+    <br>
+    <br>
+    <div class="direction">
+        <mat-label>בטוח ברצונך למחוק את
+            <b [ngStyle]="{'color': 'red'}">{{data.name}}</b> מרשימת ההמתנה?</mat-label>
+    </div>
+    <br>
+
+    <button mat-button mat-dialog-close>לא</button>
+    <button type="submit" mat-button class="color" (click)="save()">!כן, מחק</button>
+
+</div>

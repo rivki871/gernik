@@ -1,0 +1,27 @@
+.form {
+    text-align: -webkit-center;
+    width: 500px;
+    height: 280px;
+}
+
+.title {
+    font-size: x-large;
+    color: #f90c9ada;
+    font-weight: 700;
+}
+
+.td {
+    margin-right: 10px;
+    margin-top: 10px;
+    text-align: right;
+    width: 225px;
+}
+
+.direction {
+    direction: rtl;
+}
+
+.color {
+    color: #f90c9ada !important;
+    font-weight: 600;
+}

@@ -1,0 +1,34 @@
+<form [formGroup]="confirmLoanForm" class="form">
+    <br>
+    <mat-label class="title2">אישור השאלה</mat-label>
+    <br>
+    <br>
+    <div class="direction">
+
+        <mat-form-field class="posi">
+            <mat-label>תאריך השאלה</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="loanDate" />
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="sum">
+            <mat-label>תשלום</mat-label>
+            <input matInput type="number" formControlName="payment" />
+        </mat-form-field>
+        <br>
+
+        <mat-checkbox class="sec" formControlName="securityCheck">צ'ק פיקדון</mat-checkbox>
+
+        <mat-radio-group formControlName="bagColor">
+            <mat-radio-button value="1">כחול</mat-radio-button>
+            <mat-radio-button value="2">סגול</mat-radio-button>
+            <mat-radio-button value="3">אפור</mat-radio-button>
+        </mat-radio-group>
+
+    </div>
+    <br>
+
+    <button mat-button mat-dialog-close>בטל</button>
+    <button type="submit" mat-button class="color" (click)="save()">שמור</button>
+</form>

@@ -1,0 +1,29 @@
+<form [formGroup]="newLoadForm" class="form">
+  <br>
+  <mat-label class="title">השאלה חדשה</mat-label>
+  <table class="direction">
+    <tr>
+      <mat-form-field appearance="fill" class="td">
+        <mat-label>שם</mat-label>
+        <input matInput type="text" formControlName="name" name="name" id="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="td">
+        <mat-label>טלפון</mat-label>
+        <input matInput type="tel" formControlName="phone" name="phone" id="phone" />
+      </mat-form-field>
+    </tr>
+    <tr>
+      <mat-form-field appearance="fill" class="td">
+        <mat-label>כתובת</mat-label>
+        <input matInput type="text" formControlName="address" name="address" id="address" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="td">
+        <mat-label>הערות</mat-label>
+        <input matInput formControlName="remarks" name="remarks" id="remarks" />
+      </mat-form-field>
+    </tr>
+  </table>
+  <button mat-button mat-dialog-close>בטל</button>
+  <button type="submit" mat-button class="color" (click)="save()">שמור</button>
+</form>

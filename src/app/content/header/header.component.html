@@ -1,0 +1,32 @@
+<div class="header">
+    <mat-lable class="title2">בסיעתא דשמיא</mat-lable>
+    <br>
+
+    <button mat-fab class="chartBtn" (click)="goToStatistics()">
+        <mat-icon>bar_chart_4_bars</mat-icon>
+    </button>
+
+    <div class="center">
+        <button mat-fab class="btn" (click)="rotateButton()" [@buttonRotation]="isRotated ? 'rotated' : 'idle'"
+            matTooltip="השאלה חדשה">
+            <mat-icon>add</mat-icon>
+        </button>
+
+        <mat-lable class="title">גמ"ח גרניק</mat-lable>
+        <p></p>
+
+    </div>
+    <div *ngIf="loans.length > 0">
+        <div *ngFor="let loan of loans">
+            <mat-label class="title3">
+                - מושאל ל{{ loan.name }}
+                {{ loan.phone }}
+                {{ loan.address }}
+                -
+            </mat-label>
+        </div>
+    </div>
+    <mat-label class="title3" *ngIf="loans.length === 0"> המכשירים פנויים</mat-label>
+    <br>
+    <!-- הבא בתור: -->
+</div>
