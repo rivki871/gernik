@@ -2,8 +2,9 @@
     <mat-lable class="title2">בסיעתא דשמיא</mat-lable>
     <br>
 
-    <button mat-fab class="chartBtn" (click)="goToStatistics()">
-        <mat-icon>bar_chart_4_bars</mat-icon>
+    <button class="chartBtn" (click)="goToStatistics()">
+        <mat-label class="title4">פילוח נתונים</mat-label>
+        <mat-icon>bar_chart</mat-icon>
     </button>
 
     <div class="center">
@@ -28,5 +29,4 @@
     </div>
     <mat-label class="title3" *ngIf="loans.length === 0"> המכשירים פנויים</mat-label>
     <br>
-    <!-- הבא בתור: -->
 </div>

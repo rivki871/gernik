@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EndLoanComponent {
   endLoanForm!: FormGroup;
-  checked!: boolean;
   clientDetails!: waitingClient;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EndLoanComponent>,
@@ -26,7 +25,7 @@ export class EndLoanComponent {
   ngOnInit() {
     this.endLoanForm = this.fb.group({
       payment: ['20', Validators.required],
-      securityCheck: ['', Validators.required],
+      securityCheck: [true, Validators.required],
       date: [new Date(), Validators.required]
     });
   }

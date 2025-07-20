@@ -31,22 +31,70 @@
 .btn {
   background-color: #f90c9ada;
   z-index: 1000;
+  color: white;
 }
 
-.center{
+.btn mat-icon {
+  color: white;
+  font-weight: bold;
+}
+
+.center {
   display: flex;
   justify-content: center;
 }
 
-.chartBtn{
+.chartBtn {
   background-color: #f90c9ada;
-  position: fixed; /* מצב קבוע, הכפתור תמיד מוצמד */
-  left: 0;  /* המרחק מהחלק הימני של הדף */
-  padding: 15px 20px; /* מרווחים פנימיים */
-  color: white; /* צבע הטקסט */
-  border: none; /* ביטול גבולות */
-  border-radius: 20px 0 0 20px; /* קצוות מעוגלים */
-  font-size: 16px; /* גודל גופן */
-  cursor: pointer; /* שינוי הסמן בעת ריחוף */
-  transform: translateY(-50%);
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 52px;
+  width: 50px;
+  height: 60px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  color: white;
+  border: none;
+  font-size: 16px;
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.chartBtn:hover {
+  width: 160px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.139);
+}
+
+.chartBtn mat-icon {
+  font-size: 30px;
+  color: white;
+  margin-left: 5px;
+  transition: margin-left 4.3s ease;
+}
+
+.chartBtn:hover mat-icon {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+
+.title4 {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  display: none;
+  margin-right: 3px;
+}
+
+.chartBtn:hover .title4 {
+  display: inline-block;
+  margin-left: 10px;
+  transition: margin-left 4.6s ease;
+}
+
+.chartBtn:hover {
+  justify-content: flex-start;
 }

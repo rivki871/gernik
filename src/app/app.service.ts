@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { waitingClient } from './content/waitingClient';
 import { Observable } from 'rxjs';
+import { client } from './content/client';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  getAllLoans() {
-    return this.http.get(this.url + '/Loans');
+  getAllLoans():Observable<client[]> {
+    return this.http.get<client[]>(this.url + '/Loans');
   }
 
-  getAllWaitingClients() {
-    return this.http.get(this.url + '/WaitingClients');
+  getAllWaitingClients():Observable<waitingClient[]> {
+    return this.http.get<waitingClient[]>(this.url + '/WaitingClients');
   }
 
   addWaitingClient(client: any) {

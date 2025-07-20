@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewLoanComponent {
   newLoadForm!: FormGroup;
-  namePattern = "^[א-ת ]{0,20}$";
+  namePattern = "^[א-ת ']{0,20}$";
+  numberPattern = "^[0-9]{9,10}$";
 
   constructor(public dataServise: AppService, private fb: FormBuilder, private dialogRef: MatDialogRef<NewLoanComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any, public router: Router, private toastrService: ToastrService,
@@ -22,7 +23,7 @@ export class NewLoanComponent {
   ngOnInit() {
     this.newLoadForm = this.fb.group({
       name: ["", [Validators.required, Validators.pattern(this.namePattern)]],
-      phone: ["", Validators.required,],
+      phone: ["", [Validators.required, Validators.pattern(this.numberPattern)]],
       address: ["", Validators.required],
       remarks: [""],
       insertDate: [new Date()]

@@ -1,4 +1,4 @@
-import { Component, Inject, Optional } from '@angular/core';
+import { Component, ElementRef, Inject, Optional, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -14,13 +14,13 @@ import { ToastrService } from 'ngx-toastr';
 export class EditLoanComponent {
   editLoanForm!: FormGroup;
   clientDetails!: waitingClient;
+  @ViewChild('formElement') formElement!: ElementRef; // הנחה שיש לך אלמנט עם תבנית זו
 
   constructor(public fb: FormBuilder, private dialogRef: MatDialogRef<EditLoanComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any, public service: AppService,
     public router: Router, public toast: ToastrService) {
     this.clientDetails = data;
     console.log(data);
-
   }
   ngOnInit() {
     this.editLoanForm = this.fb.group({
@@ -30,17 +30,44 @@ export class EditLoanComponent {
       address: ['', Validators.required],
       insertDate: [''],
       remarks: [''],
-      isWaiting: []
+      isWaiting: [],
+      payment: [''],
     });
     this.editLoanForm.patchValue(this.data.details);
   }
 
+  ngAfterViewInit() {
+    const formHeight = this.data.formHeight;
+    if (this.formElement) {
+      this.formElement.nativeElement.style.height = formHeight;
+    }
+  }
+
   save() {
     if (this.editLoanForm.valid) {
-      const params = { ...this.editLoanForm.getRawValue() }
+      let params;
+      if (!this.data.isLoan) {
+        params = { ...this.editLoanForm.getRawValue() };
+      }
+      else {
+        params = {
+          no: this.editLoanForm.get('no')?.value,
+          name: this.editLoanForm.get('name')?.value,
+          phone: this.editLoanForm.get('phone')?.value,
+          address: this.editLoanForm.get('address')?.value,
+          insertDate: this.editLoanForm.get('insertDate')?.value,
+          remarks: this.editLoanForm.get('remarks')?.value,
+          loanDate: this.data.details.loanDate,
+          isLoan: this.data.details.isLoan,
+          securityCheck: this.data.details.securityCheck == 'לא', 0: 1,
+          isWaiting: this.data.details.isWaiting,
+          payment: this.editLoanForm.get('payment')?.value,
+          bagColor: this.data.details.bagColor,
+        };
+      }
       var reload = false;
-      this.service.UpdateWaitingClient(params.no, params).subscribe(res => {
-        if (res = params.no) {
+      this.service.UpdateWaitingClient(params.no, params).subscribe((res: any) => {
+        if (res.no == params.no) {
           this.toast.success('!רשומה נערכה בהצלחה')
           reload = true;
         }
@@ -54,8 +81,6 @@ export class EditLoanComponent {
         }
       })
       this.dialogRef.close();
-
-
     }
   }
 

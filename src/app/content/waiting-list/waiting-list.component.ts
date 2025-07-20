@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,6 +18,7 @@ import { DeleteLoanComponent } from './delete-loan/delete-loan.component';
 export class WaitingListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('input') inputElement!: ElementRef;
   displayedColumns: string[] = ['name', 'phone', 'address', 'insertDate', 'remarks', 'loan', 'edit', 'delete'];
   dataWaiting: waitingClient[] = [];
   dataSource = new MatTableDataSource<waitingClient>(this.dataWaiting);
@@ -70,6 +71,7 @@ export class WaitingListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.inputElement.nativeElement.focus();
   }
 
 }

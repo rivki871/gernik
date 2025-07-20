@@ -19,9 +19,10 @@ table {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* .mat-paginator {
-  float: right;
-} */
+.bigFont:hover {
+  font-size: 60px;
+  color: #f90c9a;
+}
 
 .title {
   text-align: center !important;
@@ -46,16 +47,6 @@ table {
 .make-gold {
   background-color: rgb(209, 221, 225)
 }
-
-/* tr.mat-mdc-footer-row td {
-  font-weight: bold;
-} */
-
-/* .hei{
-  height: 8px !important;
-  background-color: #f90c9a;
-} */
-
 
 .custom-paginator {
   display: flex;

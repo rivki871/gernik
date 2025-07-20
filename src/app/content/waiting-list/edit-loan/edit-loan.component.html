@@ -1,4 +1,4 @@
-<form [formGroup]="editLoanForm" class="form">
+<form #formElement [formGroup]="editLoanForm" class="form">
     <br>
     <mat-label class="title2">עריכת רשומה</mat-label>
     <table class="direction">
@@ -21,6 +21,12 @@
             <mat-form-field appearance="fill" class="td">
                 <mat-label>הערות</mat-label>
                 <input matInput formControlName="remarks" name="remarks" id="remarks" />
+            </mat-form-field>
+        </tr>
+        <tr>
+            <mat-form-field appearance="fill" class="td" *ngIf="data.isLoan">
+                <mat-label>תשלום</mat-label>
+                <input matInput type="number" formControlName="payment" name="payment" id="payment" />
             </mat-form-field>
         </tr>
     </table>

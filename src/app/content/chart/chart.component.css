@@ -1,4 +1,14 @@
-.chart-container{
-    height: 400px;
-    width: 500px;
+canvas {
+    width: 95% !important;
+    height: 90% !important;
+    padding: 10px;
+}
+
+.btn {
+    margin-top: 7px;
+    margin-right: 6px;
+    background-color: #f90c9ada;
+    color: white;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }

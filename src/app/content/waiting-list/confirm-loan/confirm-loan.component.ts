@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, Inject, Optional } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
@@ -15,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class ConfirmLoanComponent {
   confirmLoanForm!: FormGroup;
-  checked!: boolean;
+  // checked!: boolean;
   clientDetails!: waitingClient;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<ConfirmLoanComponent>,
@@ -68,8 +68,6 @@ export class ConfirmLoanComponent {
           }
         }
       });
-
-      // סגור את הדיאלוג לאחר שהקריאה ל- subscribe הסתיימה
     }
   }
 

@@ -1,8 +1,7 @@
 <div dir="rtl">
-    <div class="filter">
+    <div>
         <mat-form-field>
-            <input matInput (keyup)="applyFilter($event)" placeholder="הקלד לחיפוש  " #input class="searchInput"
-                [(ngModel)]="value" autofocus >
+            <input matInput (keyup)="applyFilter($event)" placeholder="הקלד לחיפוש  " #input [(ngModel)]="value">
         </mat-form-field>
     </div>
 
@@ -20,7 +19,7 @@
             <ng-container matColumnDef="phone">
                 <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header
                     sortActionDescription="Sort by phone">טלפון</th>
-                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                <td mat-cell *matCellDef="let element" class="bigFont"> {{element.phone}} </td>
             </ng-container>
             <ng-container matColumnDef="address">
                 <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header
@@ -52,7 +51,7 @@
             <ng-container matColumnDef="end">
                 <th mat-header-cell *matHeaderCellDef class="title">סיום השאלה</th>
                 <td mat-cell *matCellDef="let element" class="iconWidth">
-                    <button mat-icon-button class="rowIcons" (click)="openDialog(element)" *ngIf="element.isLoan">
+                    <button mat-icon-button class="rowIcons" (click)="openDialog(1,element)" *ngIf="element.isLoan">
                         <mat-icon>assignment_returned</mat-icon>
                     </button>
                 </td>
@@ -65,16 +64,25 @@
                 </td>
             </ng-container>
 
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef class="title"> עריכה</th>
+                <td mat-cell *matCellDef="let element" class="iconWidth">
+                    <button mat-icon-button class="rowIcons" (click)="openDialog(2,element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns; " [ngClass]="{'make-gold': !row.isLoan }"></tr>
-            <!-- <tr mat-footer-row *matFooterRowDef="tableFooterColumns"></tr> -->
             <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell not-found" colspan="8">אין נתונים התואמים לחיפוש "{{input.value}}"</td>
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">אין נתונים התואמים לחיפוש
+                    "{{input.value}}"</td>
             </tr>
         </table>
 
         <div class="custom-paginator">
-            <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons
+            <mat-paginator #paginator [pageSizeOptions]="[5, 10, 50, 200, 400]" showFirstLastButtons
                 aria-label="Select page of periodic elements">
             </mat-paginator>
             <div class="total-amount"> סה"כ: {{total}} ₪</div>

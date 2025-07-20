@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.appService.getAllLoans().subscribe((res: any) => {
       this.dataWaiting = res;
-      if (res = !null) {
+      if (res !== null) {
         this.loans = this.dataWaiting.filter(b => b.isLoan)
       }
     })
@@ -55,5 +55,4 @@ export class HeaderComponent implements OnInit {
     dialogConfig.disableClose = true;
     this.dialog.open(ChartComponent, dialogConfig);
   }
-
 }
