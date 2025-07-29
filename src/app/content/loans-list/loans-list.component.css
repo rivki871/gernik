@@ -9,8 +9,8 @@ th {
 }
 
 ::ng-deep .mat-sort-header-container {
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 }
 
 table {
@@ -19,9 +19,15 @@ table {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.bigFont {
+  line-height: 60px;
+  text-align: center;
+}
+
 .bigFont:hover {
   font-size: 60px;
   color: #f90c9a;
+  transition: all 0.3s ease-in-out;
 }
 
 .title {
