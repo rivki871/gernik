@@ -9,6 +9,6 @@ export interface waitingClient {
     isLoan: boolean,
     loanDate?: Date,
     payment?: number,
-    securityCheck?: boolean,
+    // securityCheck?: boolean,
     bagColor: number
 }

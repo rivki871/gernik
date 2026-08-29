@@ -1,0 +1,38 @@
+ .dialog-container {
+     padding: 20px;
+     min-width: 500px;
+     font-family: "Segoe UI",
+         Tahoma,
+         Geneva,
+         Verdana,
+         sans-serif;
+ }
+
+ .title {
+     color: hsl(222deg 100% 62%);
+ }
+
+ .client-details {
+     margin-bottom: 20px;
+ }
+
+ .client-details p {
+     margin: 5px 0;
+ }
+
+ table {
+     width: 100%;
+ }
+
+ th.mat-header-cell {
+     font-weight: bold;
+     text-align: center;
+ }
+
+ td.mat-cell {
+     text-align: center;
+ }
+
+ .mat-dialog-actions {
+     margin-top: 20px;
+ }

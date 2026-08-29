@@ -40,6 +40,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartModule } from 'primeng/chart';
 import { ChartComponent } from "./content/chart/chart.component";
+import { LoanHistoryComponent } from "./content/waiting-list/loan-history/loan-history.component";
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { ChartComponent } from "./content/chart/chart.component";
         DeleteLoanComponent,
         EditLoanComponent,
         EndLoanComponent,
-        ChartComponent
+        ChartComponent,
+        LoanHistoryComponent
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -59,7 +59,7 @@ export class EditLoanComponent {
           remarks: this.editLoanForm.get('remarks')?.value,
           loanDate: this.data.details.loanDate,
           isLoan: this.data.details.isLoan,
-          securityCheck: this.data.details.securityCheck == 'לא', 0: 1,
+          // securityCheck: this.data.details.securityCheck == 'לא', 0: 1,
           isWaiting: this.data.details.isWaiting,
           payment: this.editLoanForm.get('payment')?.value,
           bagColor: this.data.details.bagColor,

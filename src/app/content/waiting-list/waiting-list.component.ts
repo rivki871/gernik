@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmLoanComponent } from './confirm-loan/confirm-loan.component';
 import { EditLoanComponent } from './edit-loan/edit-loan.component';
 import { DeleteLoanComponent } from './delete-loan/delete-loan.component';
+import { LoanHistoryComponent } from './loan-history/loan-history.component';
 
 @Component({
   selector: 'app-waiting-list',
@@ -20,6 +21,7 @@ export class WaitingListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('input') inputElement!: ElementRef;
   displayedColumns: string[] = ['name', 'phone', 'address', 'insertDate', 'remarks', 'loan', 'edit', 'delete'];
+  duplicateClients: { [key: string]: boolean } = {};
   dataWaiting: waitingClient[] = [];
   dataSource = new MatTableDataSource<waitingClient>(this.dataWaiting);
   value = '';
@@ -32,7 +34,10 @@ export class WaitingListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataServise.getAllWaitingClients().subscribe(
       (res: any) => {
-        this.dataWaiting = res; // אם המערך של התוצאה של הקריאה
+        this.dataWaiting = res;
+        console.log('waiting-list: loaded dataWaiting', this.dataWaiting);
+        this.checkForDuplicates();
+        console.log('waiting-list: duplicateClients after check', this.duplicateClients);
         this.dataSource = new MatTableDataSource<waitingClient>(this.dataWaiting);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -74,4 +79,58 @@ export class WaitingListComponent implements OnInit, AfterViewInit {
     this.inputElement.nativeElement.focus();
   }
 
+  checkForDuplicates() {
+    const clientMap = new Map<string, waitingClient[]>();
+
+    // Helper to normalize fields for accurate duplicate detection
+    const normalize = (s: any) => {
+      if (s === null || s === undefined) return '';
+      return String(s).trim().toLowerCase();
+    };
+
+    const normalizePhone = (p: any) => {
+      if (p === null || p === undefined) return '';
+      // keep only digits
+      return String(p).replace(/\D+/g, '');
+    };
+
+    // Group clients by normalized identifying information
+    this.dataWaiting.forEach(client => {
+      const name = normalize(client.name);
+      const phone = normalizePhone(client.phone);
+      const address = normalize(client.address);
+      const key = `${name}|${phone}|${address}`;
+      if (!clientMap.has(key)) {
+        clientMap.set(key, []);
+      }
+      clientMap.get(key)?.push(client);
+    });
+
+    // Clear previous results
+    this.duplicateClients = {};
+
+    // Mark clients that have duplicates and log detailed groups for debugging
+    const groups = Array.from(clientMap.entries()).map(([k, v]) => ({ key: k, count: v.length, clients: v }));
+    console.log('checkForDuplicates - groups:', groups.map(g => ({ k: g.key, count: g.count })));
+
+    groups.forEach(g => {
+      if (g.count > 1) {
+        console.log('Duplicate group detected:', g);
+        g.clients.forEach(client => {
+          // use client.no as the map key so template can check duplicateClients[element.no]
+          this.duplicateClients[client.no] = true;
+        });
+      }
+    });
+  }
+
+  showHistory(element: waitingClient) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      name: element.name,
+      phone: element.phone,
+      address: element.address
+    };
+    this.dialog.open(LoanHistoryComponent, dialogConfig);
+  }
 }

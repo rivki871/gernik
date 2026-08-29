@@ -10,6 +10,7 @@ import { waitingClient } from '../waitingClient';
 import { MatSort } from '@angular/material/sort';
 import { MatInput } from '@angular/material/input';
 import { EditLoanComponent } from '../waiting-list/edit-loan/edit-loan.component';
+import { LoanHistoryComponent } from '../waiting-list/loan-history/loan-history.component';
 
 @Component({
   selector: 'app-loans-list',
@@ -21,7 +22,9 @@ export class LoansListComponent implements OnInit, AfterViewInit {
   value = '';
   dataSource = new MatTableDataSource<client>();
   dataLoans: client[] = [];
-  displayedColumns: string[] = ['name', 'phone', 'address', 'securityCheck', 'payment', 'loanDate', 'remarks', 'bagColor', 'edit', 'end',];
+  groupedLoans: { [key: string]: client[] } = {};
+  displayedColumns: string[] = ['name', 'phone', 'address', 'payment', 'loanDate', 'remarks', 'bagColor', 'edit', 'end'];
+  duplicateClients: { [key: string]: boolean } = {};
   tableFooterColumns: string[] = ['payment'];
   showEndLoan: boolean = false;
   total: number = 0;
@@ -35,16 +38,32 @@ export class LoansListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loanService.getAllLoans().subscribe((x: any) => {
       this.dataLoans = x;
-      this.dataSource.data = this.dataLoans;
-      this.dataSource.data.forEach(element => {
-        if (element.securityCheck) {
-          element.securityCheck = 'כן'
-        }
-        else {
-          element.securityCheck = 'לא'
-        }
-        this.total = this.dataSource.data.map(t => t.payment).reduce((acc, value) => acc + value, 0) //+'אלף ומשו שהעברנו עם כץ';
+      // Group loans by client (name+phone+address)
+      const clientMap = new Map<string, client[]>();
+      const normalize = (s: any) => s ? String(s).trim().toLowerCase() : '';
+      const normalizePhone = (p: any) => p ? String(p).replace(/\D+/g, '') : '';
+      this.dataLoans.forEach(c => {
+        const name = normalize(c.name);
+        const phone = normalizePhone(c.phone);
+        const address = normalize(c.address);
+        const key = `${name}|${phone}|${address}`;
+        if (!clientMap.has(key)) clientMap.set(key, []);
+        clientMap.get(key)?.push(c);
       });
+      // For each group, sort by loanDate descending and pick the latest
+      const latestLoans: client[] = [];
+      this.groupedLoans = {};
+      clientMap.forEach((loans, key) => {
+        loans.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        latestLoans.push(loans[0]);
+        this.groupedLoans[key] = loans;
+      });
+      this.dataSource.data = latestLoans;
+      this.total = latestLoans.map(t => t.payment).reduce((acc, value) => acc + value, 0);
+      // after data loaded, check for duplicate clients (same name+phone+address)
+      console.log('loans-list: loaded dataLoans', this.dataLoans);
+      this.checkForDuplicates();
+      console.log('loans-list: duplicateClients after check', this.duplicateClients);
     })
   }
 
@@ -85,6 +104,60 @@ export class LoansListComponent implements OnInit, AfterViewInit {
       case 3: return 'gray';
       default: return 'white';
     }
+  }
+
+  checkForDuplicates() {
+    const clientMap = new Map<string, client[]>();
+
+    const normalize = (s: any) => {
+      if (s === null || s === undefined) return '';
+      return String(s).trim().toLowerCase();
+    };
+
+    const normalizePhone = (p: any) => {
+      if (p === null || p === undefined) return '';
+      return String(p).replace(/\D+/g, '');
+    };
+
+    this.dataLoans.forEach(c => {
+      const name = normalize(c.name);
+      const phone = normalizePhone(c.phone);
+      const address = normalize(c.address);
+      const key = `${name}|${phone}|${address}`;
+      if (!clientMap.has(key)) clientMap.set(key, []);
+      clientMap.get(key)?.push(c);
+    });
+
+    // reset
+    this.duplicateClients = {};
+
+    const groups = Array.from(clientMap.entries()).map(([k, v]) => ({ key: k, count: v.length, clients: v }));
+    console.log('loans-list - groups:', groups.map(g => ({ k: g.key, count: g.count })));
+
+    groups.forEach(g => {
+      if (g.count > 1) {
+        console.log('Loans duplicate group detected:', g);
+        g.clients.forEach(c => {
+          this.duplicateClients[c.no] = true;
+        });
+      }
+    });
+  }
+
+  showHistory(element: client) {
+    // Find the group key for this client
+    const normalize = (s: any) => s ? String(s).trim().toLowerCase() : '';
+    const normalizePhone = (p: any) => p ? String(p).replace(/\D+/g, '') : '';
+    const key = `${normalize(element.name)}|${normalizePhone(element.phone)}|${normalize(element.address)}`;
+    const history = this.groupedLoans[key] || [];
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      name: element.name,
+      phone: element.phone,
+      address: element.address,
+      history: history
+    };
+    this.dialog.open(LoanHistoryComponent, dialogConfig);
   }
 
 }

@@ -28,24 +28,24 @@ export class ConfirmLoanComponent {
   ngOnInit() {
     this.confirmLoanForm = this.fb.group({
       payment: ['20', Validators.required],
-      securityCheck: [true, Validators.required],
+      // securityCheck: [true, Validators.required],
       loanDate: [new Date(), Validators.required],
       bagColor: ['', Validators.required]
     });
   }
 
   save() {
-    if (this.confirmLoanForm.invalid || this.confirmLoanForm.get('securityCheck')?.value !== true) {
-      if (this.confirmLoanForm.get('securityCheck')?.value !== true) {
-        this.toastr.error('חובה לאשר קבלת פיקדון');
-      }
+    if (this.confirmLoanForm.invalid) {
+      // if (this.confirmLoanForm.get('securityCheck')?.value !== true) {
+      //   this.toastr.error('חובה לאשר קבלת פיקדון');
+      // }
       if (!this.confirmLoanForm.get('bagColor')?.value) {
         this.toastr.error('חובה לבחור צבע מזוודה');
       }
     } else {
       this.clientDetails.loanDate = this.confirmLoanForm.get('loanDate')?.value;
       this.clientDetails.payment = this.confirmLoanForm.get('payment')?.value;
-      this.clientDetails.securityCheck = this.confirmLoanForm.get('securityCheck')?.value;
+      // this.clientDetails.securityCheck = this.confirmLoanForm.get('securityCheck')?.value;
       this.clientDetails.bagColor = this.confirmLoanForm.get('bagColor')?.value;
 
       this.service.ConfirmLoan(this.clientDetails).subscribe({

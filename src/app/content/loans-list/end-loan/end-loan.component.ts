@@ -25,7 +25,7 @@ export class EndLoanComponent {
   ngOnInit() {
     this.endLoanForm = this.fb.group({
       payment: ['20', Validators.required],
-      securityCheck: [true, Validators.required],
+      // securityCheck: [true, Validators.required],
       date: [new Date(), Validators.required]
     });
   }
@@ -35,7 +35,7 @@ export class EndLoanComponent {
       var reload = false;
       this.clientDetails.loanDate = this.endLoanForm.get('date')?.value;
       this.clientDetails.payment = this.endLoanForm.get('payment')?.value;
-      this.clientDetails.securityCheck = this.endLoanForm.get('securityCheck')?.value
+      // this.clientDetails.securityCheck = this.endLoanForm.get('securityCheck')?.value
       this.service.EndLoan(this.clientDetails).subscribe(res => {
         if (res = this.clientDetails.no) {
           this.toaster.success('!סיום השאלה בוצע בהצלחה')

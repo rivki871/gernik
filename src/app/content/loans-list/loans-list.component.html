@@ -14,7 +14,15 @@
             </ng-container>
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header>שם</th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element" class="name-cell">
+                    <div class="name-content">
+                        <span class="client-name">{{element.name}}</span>
+                        <button *ngIf="duplicateClients[element.no]" 
+                                class="history-button"
+                                (click)="showHistory(element)" 
+                                matTooltip="הצג היסטוריית השאלות">+</button>
+                    </div>
+                </td>
             </ng-container>
             <ng-container matColumnDef="phone">
                 <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header
@@ -31,12 +39,12 @@
                     sortActionDescription="Sort by date">הערות</th>
                 <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
             </ng-container>
-            <ng-container matColumnDef="securityCheck">
+            <!-- <ng-container matColumnDef="securityCheck">
                 <th mat-header-cell *matHeaderCellDef class="title" sortActionDescription="Sort by securityCheck">צ'ק
                     פקדון</th>
                 <td mat-cell *matCellDef="let element">
                     {{element.securityCheck}} </td>
-            </ng-container>
+            </ng-container> -->
             <ng-container matColumnDef="payment">
                 <th mat-header-cell *matHeaderCellDef class="title" mat-sort-header
                     sortActionDescription="Sort by payment">תשלום</th>
@@ -64,6 +72,8 @@
                     <mat-icon [ngStyle]="{'color': getIconColor(element.bagColor)}">luggage</mat-icon>
                 </td>
             </ng-container>
+
+
 
             <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef class="title"> עריכה</th>

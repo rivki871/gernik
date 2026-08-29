@@ -1,62 +1,97 @@
- table,
- td,
- th {
-   text-align: center !important;
- }
+table,
+td,
+th {
+  text-align: center !important;
+}
 
- .mat-mdc-form-field {
-   font-size: 14px;
-   width: 100%;
- }
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
 
- ::ng-deep .mat-sort-header-container {
-   display: flex;
-   justify-content: center;
- }
+::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
 
- table {
-   width: 80%;
-   text-align: center;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- }
+table {
+  width: 80%;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
- .title {
-   text-align: center;
-   background-color: #929eaa4a;
-   color: hsl(222deg 100% 62%);
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- }
+.title {
+  text-align: center;
+  background-color: #929eaa4a;
+  color: hsl(222deg 100% 62%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
- .bigFont {
-   line-height: 60px;
-   text-align: center;
- }
+.bigFont {
+  line-height: 60px;
+  text-align: center;
+}
 
- .bigFont:hover {
-   font-size: 60px;
-   color: #f90c9a;
-   transition: all 0.3s ease-in-out;
- }
+.bigFont:hover {
+  font-size: 60px;
+  color: #f90c9a;
+  transition: all 0.3s ease-in-out;
+}
 
- .icon {
-   color: #f90c9a;
-   display: contents !important;
- }
+.icon {
+  color: #f90c9a;
+  display: contents !important;
+}
 
- .rowIcons {
-   color: rgba(29, 16, 16, 0.493);
- }
+.rowIcons {
+  color: rgba(29, 16, 16, 0.493);
+}
 
- .iconWidth {
-   width: 15px;
- }
+.iconWidth {
+  width: 15px;
+}
 
- .mat-cell {
-   font-size: 15px;
- }
+.mat-cell {
+  font-size: 15px;
+}
 
- mat-sort-header-container {
-   display: flex;
-   align-items: center;
-   flex-direction: column-reverse;
- }
+mat-sort-header-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.compact-cell {
+  padding: 0 !important;
+}
+
+.history-header {
+  width: 30px;
+  padding: 0 !important;
+}
+
+.history-cell {
+  width: 30px;
+  padding: 0 !important;
+  text-align: center;
+}
+
+.mini-button {
+  border: none;
+  background: none;
+  color: #666;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-button:hover {
+  color: #000;
+}

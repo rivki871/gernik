@@ -1,0 +1,51 @@
+<div class="dialog-container" dir="rtl">
+  <h2 mat-dialog-title class="title">היסטוריית השאלות</h2>
+  
+  <mat-dialog-content>
+    <div class="client-details">
+      <p><strong>שם: </strong>{{data.name}}</p>
+      <p><strong>טלפון: </strong>{{data.phone}}</p>
+      <p><strong>כתובת: </strong>{{data.address}}</p>
+    </div>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="loans">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>תאריך השאלה</th>
+          <td mat-cell *matCellDef="let loan">
+            <ng-container *ngIf="loan.loanDate || loan.date; else noDate">
+              {{(loan.loanDate || loan.date) | date:'dd/MM/yyyy'}}
+            </ng-container>
+            <ng-template #noDate>
+              <span style="color: #999">—</span>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bagColor">
+          <th mat-header-cell *matHeaderCellDef>צבע מזוודה</th>
+          <td mat-cell *matCellDef="let loan">
+            <mat-icon [ngStyle]="{'color': getIconColor(loan.bagColor)}">luggage</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="payment">
+          <th mat-header-cell *matHeaderCellDef>תשלום</th>
+          <td mat-cell *matCellDef="let loan">{{loan.payment}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="remarks">
+          <th mat-header-cell *matHeaderCellDef>הערות</th>
+          <td mat-cell *matCellDef="let loan">{{loan.remarks}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="close()">סגור</button>
+  </mat-dialog-actions>
+</div>

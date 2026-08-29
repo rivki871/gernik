@@ -41,4 +41,14 @@ export class AppService {
     return this.http.put(this.url + '/Loans' , client)
   }
 
+  getLoanHistory(name: string, phone: string, address: string): Observable<client[]> {
+    return this.http.get<client[]>(this.url + '/Loans/history', {
+      params: {
+        name,
+        phone,
+        address
+      }
+    });
+  }
+
 }

@@ -1,10 +1,11 @@
 export interface client {
     no: number,
-    name: string
+    name: string,
     address: string,
     phone: string,
-    securityCheck: string,
+    // securityCheck: string,
     payment: number,
     remarks: string,
-    date: Date
+    date: Date,
+    bagColor?: number
 }

@@ -68,3 +68,46 @@ table {
   font-size: 15px;
   margin-right: 50%;
 }
+
+.name-cell {
+  position: relative;
+  padding: 0 24px 0 0 !important;
+}
+
+.name-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.client-name {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.history-button {
+  position: absolute;
+  right: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  color: #f90c9a;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.history-button:hover {
+  color: hsl(222deg 100% 62%);
+  transform: translateY(-50%) scale(1.2);
+}
